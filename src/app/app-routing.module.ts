@@ -11,6 +11,18 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'all-breeds',
+    loadChildren: () => import('./all-breeds/all-breeds.module').then( m => m.AllBreedsPageModule)
+  },
+  {
+    path: 'random-breeds',
+    loadChildren: () => import('./random-breeds/random-breeds.module').then( m => m.RandomBreedsPageModule)
+  },
+  {
+    path: 'favorites',
+    loadChildren: () => import('./favorites/favorites.module').then( m => m.FavoritesPageModule)
+  },
 ];
 
 @NgModule({

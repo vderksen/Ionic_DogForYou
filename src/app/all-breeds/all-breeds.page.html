@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">ALL DOGS BREEDS</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchText" (ionChange)=filterBreeds()></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-sliding *ngFor="let breed of breeds">
+    <ion-item >
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-text color="primary">
+              <h4 color="primary" class="details">{{breed.name}}</h4>
+            </ion-text>
+          </ion-col>
+
+          <div *ngIf="breed.saved;then content"></div>
+          <ng-template #content>
+            <ion-col>
+              <ion-icon color="danger" name="paw"></ion-icon>
+            </ion-col>
+          </ng-template>
+
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <img [src]="breed.image.url">
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+              <p class="details"><ion-text color="tertiary">Breed Group: </ion-text>{{breed.breed_group}}</p>
+              <p class="details"><ion-text color="tertiary">Weight (lbs): </ion-text>{{breed.weight.imperial}}</p>
+              <p class="details"><ion-text color="tertiary">Height (Inches): </ion-text>{{breed.height.imperial}}</p>
+              <p class="details"><ion-text color="tertiary">Life Span: </ion-text>{{breed.life_span}}</p>
+              <p text-wrap class="details"><ion-text color="tertiary">Tempretament: </ion-text>{{breed.temperament}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item-options>
+      <ion-item-option color="success" (click)="saveBreed(breed)">
+        <ion-icon color="danger" name="bookmark"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding >
+</ion-content>

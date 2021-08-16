@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">RANDOM BREED</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngFor="let breed of breed" class="ion-text-wrap">
+  <div *ngIf="breed.breeds.length < 1;then content"></div>
+  <ng-template #content>
+    <ion-row>
+      <ion-col>
+          <p text-wrap>No Data found</p>
+      </ion-col>
+    </ion-row>
+    <ion-button expand="full" color="success" (click)="getList()">NEXT</ion-button>
+  </ng-template>
+
+  <div *ngIf="breed.breeds.length > 0;then content2"></div>
+  <ng-template #content2>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" color="success" (click)="getList()">NEXT</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-text color="primary">
+              <h4 color="primary" class="details">{{breed.breeds[0].name}}</h4>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <img [src]="breed.url">
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+              <p text-wrap>{{breed.breeds[0].temperament}}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" color="danger" (click)="saveBreed(breed)">{{text}}</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-template>
+
+</ion-content>
